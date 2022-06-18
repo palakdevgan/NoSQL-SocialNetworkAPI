@@ -1,10 +1,14 @@
 const router = require('express').Router();
-const { User,Thought } = require('../../models');
+const { User } = require('../../models');
 
 router.get('/', (req, res) => {
-    User.findAll({})
+    User.find({})
         .populate({
-            path: ['thoughts', 'friends'],
+            path: 'thoughts',
+            select: '-__v'
+        })
+        .populate({
+            path: 'friends',
             select: '-__v'
         })
         .select('-__v')
@@ -19,7 +23,11 @@ router.get('/', (req, res) => {
 router.get(':/id', ({ params }, res) => {
     User.findOne({ _id: params.id })
         .populate({
-            path: ['thoughts', 'friends'],
+            path: 'thoughts',
+            select: '-__v'
+        })
+        .populate({
+            path: 'friends',
             select: '-__v'
         })
         .select('-__v')
