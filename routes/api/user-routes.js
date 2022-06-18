@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get(':/id', ({ params }, res) => {
+router.get('/:id', ({ params }, res) => {
     User.findOne({ _id: params.id })
         .populate({
             path: 'thoughts',
