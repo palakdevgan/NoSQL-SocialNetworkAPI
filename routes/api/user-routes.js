@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Thought } = require('../../models');
 
 router.get('/', (req, res) => {
     User.find({})
@@ -69,7 +69,11 @@ router.delete('/:id', ({ params }, res) => {
                 res.status(404).json({ message: 'No user found with this id!' });
                 return;
             }
-            res.json(dbUserData);
+            Thought.deleteMany({ _id: { $in: dbUserData.thoughts } })
+                .then(() => {
+                    res.json(dbUserData);
+                })
+
         })
         .catch(err => res.status(400).json(err));
 });
@@ -95,7 +99,7 @@ router.post('/:userId/friends/:friendId', ({ params }, res) => {
 router.delete('/:userId/friends/:friendId', ({ params }, res) => {
     User.findOneAndUpdate(
         { _id: params.userId },
-        { $pull: { friends: params.friendId  } },
+        { $pull: { friends: params.friendId } },
         { new: true, runValidators: true }
     )
         .then(dbUserData => {
