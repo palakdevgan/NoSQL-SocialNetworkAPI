@@ -31,15 +31,15 @@ router.post('/', ({ body }, res) => {
             return User.findOneAndUpdate(
                 { _id: body.userId },
                 { $push: { thoughts: _id } },
-                { new: true }
-            )
-                .then(dbUserData => {
-                    if (!dbUserData) {
-                        res.status(404).json({ message: 'No user found with this id!' });
-                        return;
-                    }
-                    res.json(dbUserData);
-                })
+                { runValidators: true,new: true }
+            );
+        })
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'No user found with this id!' });
+                return;
+            }
+            res.json(dbUserData);
         })
         .catch(err => res.json(err));
 });
