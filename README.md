@@ -30,7 +30,7 @@ Copyright &copy; 2022, Palak Devgan
 To contribute to this project,clone this repo locally and commit your code on separate branch.Then create a pull request for the author before merging it to main branch.
 
 ## Link to Walkthrough Video
-Part 1(Users and Thoughts)-https://drive.google.com/file/d/1Zgo87eVAYnGgNuBq5RhD-IGKmhnujXxS/view
+Part 1(Users and Thoughts)-https://drive.google.com/file/d/1Zgo87eVAYnGgNuBq5RhD-IGKmhnujXxS/view  
 Part 2(Reactions and Friends)-https://drive.google.com/file/d/1xXYsEqjvS5M4s_QyCp1zpZpqQDKEvFiK/view
 
 ## Questions
